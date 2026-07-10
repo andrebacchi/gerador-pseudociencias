@@ -9,7 +9,7 @@ export default function ShareButton({ targetRef, caption }) {
     try {
       const html2canvas = (await import("html2canvas")).default;
       const canvas = await html2canvas(targetRef.current, {
-        backgroundColor: "#0a0a0a",
+        backgroundColor: "#0c0c0e",
         scale: 2,
         useCORS: true,
       });
@@ -26,7 +26,6 @@ export default function ShareButton({ targetRef, caption }) {
         await navigator.share({ ...shareData, files: [file] });
       } else if (navigator.share) {
         await navigator.share(shareData);
-        // Fallback: also download the image
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
@@ -34,7 +33,6 @@ export default function ShareButton({ targetRef, caption }) {
         a.click();
         URL.revokeObjectURL(url);
       } else {
-        // Desktop fallback: download + open WhatsApp
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
@@ -57,17 +55,17 @@ export default function ShareButton({ targetRef, caption }) {
     <button
       onClick={handleShare}
       disabled={sharing}
-      className="w-full font-bold uppercase tracking-widest py-3 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-white text-sm border border-gray-600 hover:border-blue-400 disabled:opacity-60 disabled:cursor-not-allowed"
-      style={{ background: "linear-gradient(135deg, #1e3a5f, #1a2e5a)" }}
+      className="w-full py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+      style={{ background: "#151518", border: "1px solid #c9a96e", color: "#c9a96e" }}
     >
       {sharing ? (
         <>
-          <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+          <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
           Preparando imagem...
         </>
       ) : (
         <>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
             <circle cx="18" cy="5" r="3" />
             <circle cx="6" cy="12" r="3" />
             <circle cx="18" cy="19" r="3" />
