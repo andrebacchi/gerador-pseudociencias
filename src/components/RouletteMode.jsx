@@ -4,10 +4,10 @@ import { PREFIXOS, RADICAIS, SUFIXOS, COMPLEMENTOS, SLOGANS } from "@/lib/pseudo
 import RouletteReel from "./RouletteReel";
 
 const REELS = [
-  { key: "prefixo", label: "Prefixo", options: PREFIXOS, color: "text-blue-300", delay: 0, duration: 2.4 },
-  { key: "radical", label: "Radical", options: RADICAIS, color: "text-purple-300", delay: 0.15, duration: 2.6 },
-  { key: "sufixo", label: "Sufixo", options: SUFIXOS, color: "text-green-300", delay: 0.3, duration: 2.8 },
-  { key: "complemento", label: "Complemento", options: COMPLEMENTOS, color: "text-orange-300", delay: 0.45, duration: 3.0 },
+  { key: "prefixo", label: "Prefixo", options: PREFIXOS, accentColor: "#3b82f6", delay: 0, duration: 2.0 },
+  { key: "radical", label: "Radical", options: RADICAIS, accentColor: "#a855f7", delay: 0.2, duration: 2.4 },
+  { key: "sufixo", label: "Sufixo", options: SUFIXOS, accentColor: "#22c55e", delay: 0.4, duration: 2.8 },
+  { key: "complemento", label: "Complemento", options: COMPLEMENTOS, accentColor: "#f97316", delay: 0.6, duration: 3.2 },
 ];
 
 export default function RouletteMode() {
@@ -49,7 +49,7 @@ export default function RouletteMode() {
         className="w-full max-w-lg"
       >
         <div className="rounded-2xl border border-gray-700 p-6 md:p-8" style={{ background: "rgba(255,255,255,0.04)", backdropFilter: "blur(10px)" }}>
-          {/* Reels */}
+          {/* Reels - vertical slot machines */}
           <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
             {REELS.map((reel) => (
               <div key={reel.key} className="flex flex-col items-center gap-2">
@@ -59,8 +59,14 @@ export default function RouletteMode() {
                   finalIndex={finals ? finals[reel.key] : 0}
                   delay={reel.delay}
                   duration={reel.duration}
+                  accentColor={reel.accentColor}
                 />
-                <span className={`text-xs font-bold uppercase tracking-widest ${reel.color}`}>{reel.label}</span>
+                <span
+                  className="text-xs font-bold uppercase tracking-widest"
+                  style={{ color: reel.accentColor }}
+                >
+                  {reel.label}
+                </span>
               </div>
             ))}
           </div>
@@ -77,8 +83,10 @@ export default function RouletteMode() {
                 <span className="inline-block w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
                 Girando a roleta do destino...
               </span>
+            ) : spinKey === 0 ? (
+              "🎲 Girar a roleta 🎲"
             ) : (
-              spinKey === 0 ? "🎲 Girar a roleta 🎲" : "🔄 Girar novamente 🔄"
+              "🔄 Girar novamente 🔄"
             )}
           </button>
         </div>
