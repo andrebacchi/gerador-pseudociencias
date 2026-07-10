@@ -24,7 +24,7 @@ export default function Home() {
         className="text-center mb-8"
       >
         <div className="flex justify-center mb-3">
-          <span className="text-5xl">⚗️</span>
+          <span className="text-5xl">⛏️</span>
         </div>
         <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-tight">
           <span style={{ color: "#facc15" }}>Gerador Supremo</span>
