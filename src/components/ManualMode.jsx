@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { generatePseudociencia } from "@/lib/pseudocienciaData";
+import { generateHistoria } from "@/lib/historiaData";
 import ShareButton from "./ShareButton";
 
 export default function ManualMode() {
@@ -8,16 +9,30 @@ export default function ManualMode() {
   const [dataNascimento, setDataNascimento] = useState("");
   const [resultado, setResultado] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [historia, setHistoria] = useState(null);
+  const [loadingHistoria, setLoadingHistoria] = useState(false);
   const cardRef = useRef(null);
+  const historiaRef = useRef(null);
 
   const handleGerar = () => {
     if (!nome.trim() || !dataNascimento) return;
     setLoading(true);
     setResultado(null);
+    setHistoria(null);
     setTimeout(() => {
       setResultado(generatePseudociencia(nome, dataNascimento));
       setLoading(false);
     }, 1200);
+  };
+
+  const handleHistoria = () => {
+    if (!resultado) return;
+    setLoadingHistoria(true);
+    setHistoria(null);
+    setTimeout(() => {
+      setHistoria(generateHistoria(nome, dataNascimento, resultado.nome_terapia));
+      setLoadingHistoria(false);
+    }, 1500);
   };
 
   return (
@@ -155,6 +170,68 @@ export default function ManualMode() {
             <div className="mt-4">
               <ShareButton targetRef={cardRef} caption={`Minha pseudociência é: ${resultado.nome_terapia}! E a sua? Gere a sua no Gerador Supremo do Dr. Latão 2.0™ → https://geradorpseudociencia.base44.app/`} />
             </div>
+
+            {!historia && !loadingHistoria && (
+              <button
+                onClick={handleHistoria}
+                className="w-full mt-3 py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 text-sm font-semibold"
+                style={{ background: "transparent", border: "1px solid #3a3a3e", color: "#8a8580" }}
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
+                  <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5 5.754 5 4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18c1.746 0 3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                Criar minha história profissional
+              </button>
+            )}
+
+            {loadingHistoria && (
+              <div className="mt-3 py-8 rounded-lg flex items-center justify-center gap-2 text-sm" style={{ background: "#151518", border: "1px solid #2a2a2e", color: "#8a8580" }}>
+                <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                O Dr. Charles Latão está redigindo sua lenda...
+              </div>
+            )}
+
+            {historia && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.6, type: "spring" }}
+                className="mt-6"
+              >
+                <div ref={historiaRef} className="relative rounded-xl overflow-hidden" style={{ background: "#0c0c0e", border: "1px solid #3a3a3e" }}>
+                  <div className="text-center py-3 px-4 text-[10px] uppercase tracking-[0.25em] font-semibold" style={{ background: "#c9a96e", color: "#0c0c0e" }}>
+                    A origem mítica de {nome.trim().split(" ")[0]}
+                  </div>
+                  <div className="p-6 md:p-8">
+                    <div className="flex flex-wrap justify-center gap-2 mb-5">
+                      {historia.etapas.map((etapa, i) => (
+                        <div key={i} className="rounded-lg px-3 py-2 text-center" style={{ background: "#151518", border: "1px solid #2a2a2e" }}>
+                          <div className="text-[9px] uppercase tracking-[0.15em] font-semibold" style={{ color: "#6a6560" }}>Etapa {i + 1}</div>
+                          <div className="font-semibold text-sm mt-0.5" style={{ color: "#e8e4dc" }}>{etapa.titulo}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="my-4" style={{ borderTop: "1px solid #2a2a2e" }} />
+                    <div className="space-y-4">
+                      {historia.paragrafos.map((p, i) => (
+                        <p key={i} className="text-sm md:text-base leading-relaxed text-justify" style={{ color: "#e8e4dc" }}>
+                          {p}
+                        </p>
+                      ))}
+                    </div>
+                    <p className="text-xs mt-5 leading-relaxed" style={{ color: "#5a5550" }}>
+                      Narrativa gerada para <span className="font-semibold" style={{ color: "#8a8580" }}>{nome}</span> — {historia.idade} anos — pela Jornada do Herói do Dr. Charles Latão.
+                    </p>
+                  </div>
+                  <div className="text-center py-2.5 px-4 text-[10px] font-medium" style={{ background: "#151518", color: "#6a6560", borderTop: "1px solid #2a2a2e" }}>
+                    Conteúdo satírico · Baseado no livro-jogo de André D. Bacchi
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <ShareButton targetRef={historiaRef} caption={`A origem mítica de ${nome.trim().split(" ")[0]} foi revelada pelo Dr. Charles Latão! Descubra a sua no Gerador Supremo 2.0™ → https://geradorpseudociencia.base44.app/`} />
+                </div>
+              </motion.div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
