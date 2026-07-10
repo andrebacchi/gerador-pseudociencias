@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { generatePseudociencia } from "@/lib/pseudocienciaData";
+import ShareButton from "./ShareButton";
 
 export default function ManualMode() {
   const [nome, setNome] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
   const [resultado, setResultado] = useState(null);
   const [loading, setLoading] = useState(false);
+  const cardRef = useRef(null);
 
   const handleGerar = () => {
     if (!nome.trim() || !dataNascimento) return;
@@ -82,7 +84,7 @@ export default function ManualMode() {
             <div className="text-center mb-4">
               <p className="text-gray-400 text-sm uppercase tracking-widest">🎺 O Dr. Charles Latão anuncia:</p>
             </div>
-            <div className="relative rounded-2xl overflow-hidden border-2 border-yellow-400 shadow-2xl" style={{ background: "linear-gradient(135deg, #1a0a2e 0%, #0d1a3a 100%)" }}>
+            <div ref={cardRef} className="relative rounded-2xl overflow-hidden border-2 border-yellow-400 shadow-2xl" style={{ background: "linear-gradient(135deg, #1a0a2e 0%, #0d1a3a 100%)" }}>
               <div className="bg-yellow-400 text-black text-center py-2 px-4 font-black uppercase tracking-widest text-xs">
                 ⭐ A sua nova pseudociência é: ⭐
               </div>
@@ -138,6 +140,9 @@ export default function ManualMode() {
               <div className="bg-blue-900 text-blue-200 text-center py-2 px-4 text-xs font-semibold">
                 ⚠️ Conteúdo satírico • Baseado no livro-jogo de André D. Bacchi
               </div>
+            </div>
+            <div className="mt-4">
+              <ShareButton targetRef={cardRef} caption={`Minha pseudociência é: ${resultado.nome_terapia}! E a sua? Gere a sua no Gerador Supremo do Dr. Latão 2.0™`} />
             </div>
           </motion.div>
         )}

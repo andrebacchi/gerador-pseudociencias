@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PREFIXOS, RADICAIS, SUFIXOS, COMPLEMENTOS, SLOGANS } from "@/lib/pseudocienciaData";
 import RouletteReel from "./RouletteReel";
+import ShareButton from "./ShareButton";
 
 const REELS = [
   { key: "prefixo", label: "Prefixo", options: PREFIXOS, accentColor: "#3b82f6", delay: 0, duration: 2.0 },
@@ -15,6 +16,7 @@ export default function RouletteMode() {
   const [spinning, setSpinning] = useState(false);
   const [finals, setFinals] = useState(null);
   const [showResult, setShowResult] = useState(false);
+  const cardRef = useRef(null);
 
   const maxFinish = Math.max(...REELS.map((r) => r.delay + r.duration));
 
@@ -106,7 +108,7 @@ export default function RouletteMode() {
             <div className="text-center mb-4">
               <p className="text-gray-400 text-sm uppercase tracking-widest">🎺 A roleta do destino decidiu:</p>
             </div>
-            <div className="relative rounded-2xl overflow-hidden border-2 border-yellow-400 shadow-2xl" style={{ background: "linear-gradient(135deg, #1a0a2e 0%, #0d1a3a 100%)" }}>
+            <div ref={cardRef} className="relative rounded-2xl overflow-hidden border-2 border-yellow-400 shadow-2xl" style={{ background: "linear-gradient(135deg, #1a0a2e 0%, #0d1a3a 100%)" }}>
               <div className="bg-yellow-400 text-black text-center py-2 px-4 font-black uppercase tracking-widest text-xs">
                 ⭐ A sua nova pseudociência é: ⭐
               </div>
@@ -134,6 +136,9 @@ export default function RouletteMode() {
               <div className="bg-blue-900 text-blue-200 text-center py-2 px-4 text-xs font-semibold">
                 ⚠️ Conteúdo satírico • Baseado no livro-jogo de André D. Bacchi
               </div>
+            </div>
+            <div className="mt-4">
+              <ShareButton targetRef={cardRef} caption={`A roleta do destino me deu: ${nomeFinal}! Gere a sua pseudociência no Gerador Supremo do Dr. Latão 2.0™`} />
             </div>
           </motion.div>
         )}
