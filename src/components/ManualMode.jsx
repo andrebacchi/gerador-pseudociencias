@@ -142,7 +142,7 @@ export default function ManualMode() {
               </div>
             </div>
             <div className="mt-4">
-              <ShareButton targetRef={cardRef} caption={`Minha pseudociência é: ${resultado.nome_terapia}! E a sua? Gere a sua no Gerador Supremo do Dr. Latão 2.0™`} />
+              <ShareButton targetRef={cardRef} caption={`Minha pseudociência é: ${resultado.nome_terapia}! E a sua? Gere a sua no Gerador Supremo do Dr. Latão 2.0™ → https://geradorpseudociencia.base44.app/`} />
             </div>
           </motion.div>
         )}

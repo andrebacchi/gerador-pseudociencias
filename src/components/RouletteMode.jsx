@@ -138,7 +138,7 @@ export default function RouletteMode() {
               </div>
             </div>
             <div className="mt-4">
-              <ShareButton targetRef={cardRef} caption={`A roleta do destino me deu: ${nomeFinal}! Gere a sua pseudociência no Gerador Supremo do Dr. Latão 2.0™`} />
+              <ShareButton targetRef={cardRef} caption={`A roleta do destino me deu: ${nomeFinal}! Gere a sua pseudociência no Gerador Supremo do Dr. Latão 2.0™ → https://geradorpseudociencia.base44.app/`} />
             </div>
           </motion.div>
         )}
