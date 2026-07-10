@@ -28,13 +28,12 @@ export function hashString(str) {
 }
 
 export function generatePseudociencia(nome, dataNascimento) {
-  const seed = hashString(nome.toLowerCase().trim() + dataNascimento);
-  const pick = (arr, offset = 0) => arr[(seed + offset * 137) % arr.length];
-  const prefixo = pick(PREFIXOS, 0);
-  const radical = pick(RADICAIS, 1);
-  const sufixo = pick(SUFIXOS, 2);
-  const complemento = pick(COMPLEMENTOS, 3);
-  const slogan = pick(SLOGANS, 4);
+  const combined = nome.toLowerCase().trim() + dataNascimento;
+  const prefixo = PREFIXOS[hashString(combined + "prefixo") % PREFIXOS.length];
+  const radical = RADICAIS[hashString(combined + "radical") % RADICAIS.length];
+  const sufixo = SUFIXOS[hashString(combined + "sufixo") % SUFIXOS.length];
+  const complemento = COMPLEMENTOS[hashString(combined + "complemento") % COMPLEMENTOS.length];
+  const slogan = SLOGANS[hashString(combined + "slogan") % SLOGANS.length];
   const nome_terapia = `${prefixo}${radical}${sufixo} ${complemento}`;
   return { prefixo, radical, sufixo, complemento, slogan, nome_terapia };
 }
