@@ -23,16 +23,13 @@ export default function Home() {
         <div className="flex justify-center mb-4">
           <span className="text-3xl" style={{ filter: "grayscale(0.2)" }}>⛏</span>
         </div>
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <span className="h-px w-8" style={{ background: "#3a3a3e" }} />
-          <span className="text-[10px] uppercase tracking-[0.3em]" style={{ color: "#8a8580" }}>Volume II</span>
-          <span className="h-px w-8" style={{ background: "#3a3a3e" }} />
-        </div>
         <h1 className="font-heading text-3xl md:text-5xl font-black leading-tight">
           <span style={{ color: "#c9a96e" }}>Gerador Supremo</span>
           <br />
           <span style={{ color: "#e8e4dc" }}>de Termos</span>{" "}
           <span className="italic font-normal" style={{ color: "#8a8580" }}>(Pseudo)Científicos</span>
+          <br />
+          <span style={{ color: "#c9a96e" }}>2.0™</span>
         </h1>
         <p className="mt-5 text-sm md:text-base max-w-md mx-auto leading-relaxed italic" style={{ color: "#8a8580" }}>
           Gere sua pseudociência personalizada com a ajuda do{" "}
