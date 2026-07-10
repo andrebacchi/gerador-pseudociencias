@@ -26,13 +26,17 @@ export default function Home() {
         <div className="flex justify-center mb-3">
           <span className="text-5xl">⚗️</span>
         </div>
-        <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-tight">
-          <span className="text-white">O Maior</span> <span style={{ color: "#3b82f6" }}>Picareta</span>
+        <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-tight">
+          <span style={{ color: "#facc15" }}>Gerador Supremo</span>
           <br />
-          <span style={{ color: "#facc15" }}>em Saúde</span>
+          <span className="text-white">de Termos</span>{" "}
+          <span style={{ color: "#3b82f6" }}>(Pseudo)Científicos</span>
+          <br />
+          <span style={{ color: "#ef4444" }}>2.0™</span>
         </h1>
         <p className="mt-4 text-gray-400 text-sm md:text-base max-w-md mx-auto leading-relaxed">
-          Gere sua pseudociência personalizada com o <span className="text-blue-400 font-semibold">Gerador Supremo do Dr. Latão 2.0™</span>
+          Gere sua pseudociência personalizada com a ajuda do{" "}
+          <span className="text-yellow-400 font-semibold">Doutor Charles Latão</span>.
         </p>
       </motion.div>
 
@@ -65,8 +69,35 @@ export default function Home() {
       {/* Active mode */}
       {activeTab === "manual" ? <ManualMode /> : <RouletteMode />}
 
+      {/* Book promotion */}
+      <motion.a
+        href="https://a.co/d/0d0edJBO"
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-16 w-full max-w-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-yellow-400 transition-colors block group"
+        style={{ background: "rgba(255,255,255,0.04)" }}
+      >
+        <img
+          src="https://media.base44.com/images/public/6a511894594db09521a1d76d/386647b1f_image.png"
+          alt="Manual Prático do Picareta em Saúde"
+          className="w-full h-auto"
+        />
+        <div className="p-5 text-center">
+          <p className="text-white font-bold text-sm uppercase tracking-wide">
+            Aprenda a se tornar um picareta em saúde
+          </p>
+          <span className="mt-2 inline-block text-xs font-bold uppercase tracking-widest text-black px-4 py-2 rounded-lg group-hover:scale-105 transition-transform" style={{ background: "linear-gradient(135deg, #facc15, #f59e0b)" }}>
+            📖 Ver o livro
+          </span>
+        </div>
+      </motion.a>
+
       {/* Footer */}
-      <div className="mt-16 text-center text-gray-700 text-xs max-w-sm">
+      <div className="mt-8 text-center text-gray-700 text-xs max-w-sm">
         <p>Baseado no livro-jogo <em>"O Maior Picareta em Saúde"</em> de André D. Bacchi</p>
         <p className="mt-1">Este gerador é uma sátira educativa sobre pseudociências.</p>
       </div>
