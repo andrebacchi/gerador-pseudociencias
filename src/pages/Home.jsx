@@ -107,7 +107,7 @@ export default function Home() {
         >
           <div className="overflow-hidden rounded-lg" style={{ background: "#151518" }}>
             <img
-              src="https://media.base44.com/images/public/6a511894594db09521a1d76d/386647b1f_image.png"
+              src={`${import.meta.env.BASE_URL}img/livro-manual-picareta.jpg`}
               alt="Manual Prático do Picareta em Saúde"
               className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.03]"
             />
