@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import ManualMode from "@/components/ManualMode";
 import RouletteMode from "@/components/RouletteMode";
+import InstallButton from "@/components/InstallButton";
 
 const TABS = [
   { id: "manual", label: "Personalizado" },
@@ -12,7 +13,8 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("manual");
 
   return (
-    <div className="min-h-screen flex flex-col items-center px-4 py-12 font-body" style={{ background: "#0c0c0e", color: "#e8e4dc" }}>
+    <div className="min-h-screen flex flex-col items-center px-4 pt-20 pb-12 md:py-12 font-body" style={{ background: "#0c0c0e", color: "#e8e4dc" }}>
+      <InstallButton className="fixed top-4 left-4 z-40" />
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -86,7 +88,7 @@ export default function Home() {
         >
           <div className="overflow-hidden rounded-lg" style={{ background: "#151518" }}>
             <img
-              src="https://media.base44.com/images/public/6a511894594db09521a1d76d/d790dc49c_image.png"
+              src={`${import.meta.env.BASE_URL}img/livro-maior-picareta.jpg`}
               alt="O Maior Picareta em Saúde - Livro-Jogo"
               className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.03]"
             />
