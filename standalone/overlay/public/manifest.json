@@ -6,6 +6,7 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "related_applications": [{ "platform": "webapp", "url": "https://andrebacchi.github.io/gerador-pseudociencias/manifest.json" }],
   "background_color": "#0c0c0e",
   "theme_color": "#0c0c0e",
   "icons": [
