@@ -1,5 +1,5 @@
 /* Gerador de Pseudociências: funciona sem internet depois da primeira visita. Aumente a versão a cada atualização. */
-const VERSION = "gerador-pseudociencias-v4";
+const VERSION = "gerador-pseudociencias-v5";
 // Todos os apps dividem andrebacchi.github.io: apague só os caches deste app.
 const PREFIX = VERSION.replace(/v\d+$/, "");
 self.addEventListener("install", e => { self.skipWaiting(); });
