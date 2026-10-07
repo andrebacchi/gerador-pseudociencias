@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import ManualMode from "@/components/ManualMode";
 import RouletteMode from "@/components/RouletteMode";
 import InstallButton from "@/components/InstallButton";
+import QrButton from "@/components/QrButton";
 
 const TABS = [
   { id: "manual", label: "Personalizado" },
@@ -14,14 +15,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col items-center px-4 pt-20 pb-12 md:py-12 font-body" style={{ background: "#0c0c0e", color: "#e8e4dc" }}>
-      {/* canto superior esquerdo: voltar ao BACCHI LAB e instalar */}
-      <div className="fixed top-4 left-4 z-40 flex items-center gap-3">
+      {/* canto superior esquerdo: voltar ao BACCHI LAB, QR code e instalar */}
+      <div className="fixed top-4 left-4 z-40 flex items-center gap-2 sm:gap-3">
         <a
           href="https://andrebacchi.github.io/bacchilab/"
           className="flex items-center h-10 text-[11.5px] leading-none font-semibold uppercase tracking-[0.16em] no-underline transition-colors text-[#8a8580] hover:text-[#c9a96e]"
         >
           ‹ BACCHI LAB
         </a>
+        <QrButton />
         <InstallButton />
       </div>
       {/* Header */}
